@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sensors/sensors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:vibration/vibration.dart';
 import 'dart:math';
+import 'dart:async';
 
 void main() {
   runApp(ShakeCounterApp());
@@ -11,6 +13,7 @@ class ShakeCounterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+       debugShowCheckedModeBanner: false,
       home: ShakeCounterPage(),
     );
   }
@@ -33,6 +36,8 @@ class _ShakeCounterPageState extends State<ShakeCounterPage> {
     'assets/dice6.svg',
   ];
   String currentDiceFace = 'assets/dice_face1.svg'; // Initial face
+  Color backgroundColor = Colors.white; // Default background color
+  bool changeBackgroundColor = false;
 
   @override
   void initState() {
@@ -47,6 +52,17 @@ class _ShakeCounterPageState extends State<ShakeCounterPage> {
         setState(() {
           shakeCount++;
           rollDice(); // Roll the dice on shake
+          Vibration.vibrate(duration: 10000);
+
+          // Change background color and set a timer to reset it after 3 seconds
+          changeBackgroundColor = true;
+          backgroundColor = Colors.primaries[random.nextInt(Colors.primaries.length)];
+          Timer(Duration(seconds: 3), () {
+            setState(() {
+              changeBackgroundColor = false;
+              backgroundColor = Colors.white;
+            });
+          });
         });
       }
     });
@@ -62,9 +78,6 @@ class _ShakeCounterPageState extends State<ShakeCounterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Shake Counter App'),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -89,6 +102,7 @@ class _ShakeCounterPageState extends State<ShakeCounterPage> {
           ],
         ),
       ),
+      backgroundColor: changeBackgroundColor ? backgroundColor : Colors.white,
     );
   }
 }
