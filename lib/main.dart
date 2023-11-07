@@ -137,7 +137,7 @@ class _ShakeCounterPageState extends State<ShakeCounterPage> {
             ),
             Text(
               'Countdown: $countdown seconds',
-              style: TextStyle(fontSize: 24),
+              style: TextStyle(fontSize: 23),
             ),
             GestureDetector(
               onTap: rollDice,
