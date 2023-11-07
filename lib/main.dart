@@ -61,6 +61,7 @@ class _ShakeCounterPageState extends State<ShakeCounterPage> {
             setState(() {
               changeBackgroundColor = false;
               backgroundColor = Colors.white;
+              Vibration.cancel();
             });
           });
         });
