@@ -14,7 +14,7 @@ Dice Game is a fun and interactive game that you can play with your friends or b
 
 To play the game, you can download the APK file from the link below. Please note that the app is currently only available for Android devices.
 
-[Download APK](https://example.com/my-dice-game.apk)
+[Download APK](https://drive.google.com/file/d/1_5IyvhEcvxMA_zEb9S6wbsd_hpuU-47X/view?usp=sharing)
 
 ## Features 🧩
 
